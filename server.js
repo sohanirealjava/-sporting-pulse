@@ -29,7 +29,7 @@ app.get("/hello", function (_req, resp) {
   resp.end();
 })
 //----------
-app.use(express.static("PUBLIC"));
+app.use(express.static("public"));
 
 app.get("/", function (_req, resp) {
   console.log(__dirname);
