@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            padding: 20px;
+        }
+
+        .form-container {
+            background: rgb(239, 227, 227);
+            padding: 30px;
+            max-width: 800px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #b30059;
+        }
+
+        .form-group {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 3px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-row {
+            margin-bottom: 15px;
+            width: 80%;
+        }
+
+        .search-button {
+            background-color: #cc0066;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #btn {
+            width: 300px;
+            margin-top: 30px;
+        }
+
+        #pic {
+            margin-left: 650px;
+
+        }
+
+        #otherInfo {
+            width: 100px;
+            height: 40px;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $("#publish").click(function () {
+                let obj = {
+                    type: "get",
+                    url: "/do-tournament",
+                    data: {
+                        txtEmail: $("#txtEmail").val(),
+                        txtEvent: $("#txtEvent").val(),
+                        txtDate: $("#txtDate").val(),
+                        txtTime: $("#txtTime").val(),
+                        txtAddress: $("#txtAddress").val(),
+                        txtCity: $("#txtCity").val(),
+                        txtCombo: $("#txtCombo").val(),
+                        txtMinage: $("#txtMinage").val(),
+                        txtMaxage: $("#txtMaxage").val(),
+                        txtRegister: $("#txtRegister").val(),
+                        txtFees: $("#txtFees").val(),
+                        txtMoney: $("#txtMoney").val(),
+                        txtContact: $("#txtContact").val()
+                    }
+                }
+                $.ajax(obj).then(function (response) {
+                    alert(JSON.stringify(response))
+                }).fail(function (err) {
+                    alert(err);
+                })
+
+            })
+        })
+
+    </script>
+
+    <script>
+        function showUser() {
+            let activeUser = localStorage.getItem("activeUser");
+            document.getElementById("txtmail").value = activeUser;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <form action="/tournament" onload="showUser();">
+                <div class="form-container">
+                    <div style="background-color: rgb(239, 232, 234);">
+                        <h2>
+                            <font style="color:rgb(171, 54, 81)">Submit Your Event Details</font>
+                        </h2>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label>Email ID</label>
+                            <input type="email" placeholder="abc@gmail.com" name="txtEmail" id="txtEmail">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label>Event Title</label>
+                            <input type="text" id="txtEvent" name="txtEvent">
+                        </div>
+                        <div class="form-row">
+                            <label>Date</label>
+                            <input type="date" id="txtDate" name="txtDate">
+                        </div>
+                        <div class="form-row">
+                            <label>Time</label>
+                            <input type="time" id="txtTime" name="txtTime">
+                        </div>
+                    </div>
+
+
+
+                    <div class=" form-group ">
+                        <div class=" form-row">
+                            <label>Address</label>
+                            <input type="text" id="txtAddress" name="txtAddress">
+                        </div>
+                        <div class="form-row">
+                            <label>City</label>
+                            <input type="text" name="txtCity" id="txtCity">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <label>Select sport</label>
+                        <select style="width:70%; height: 30px;" id="txtCombo" name="txtCombo">
+                            <option value="None">select</option>
+                            <option value="Basketball">Basketball</option>
+                            <option value="Cricket">Cricket</option>
+                            <option value="Football">Football</option>
+                            <option value="Badminton">Badminton</option>
+                            <option value="Hockey">Hockey</option>
+                            <option value="Golf">Golf</option>
+                            <option value="Handball">Handball</option>
+                            <option value="Table Tennis">Table Tennis</option>
+                            <option value="Power lifting">Power lifting</option>
+                            <option value="Boxing">Boxing</option>
+                            <option value="Gymnastics">Gymnastics</option>
+                            <option value="Archery">Archery</option>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label>Minimum Age</label>
+                            <input type="number" name="txtMinage" id="txtMinage">
+                        </div>
+                        <div class="form-row">
+                            <label>Maximum Age</label>
+                            <input type="number" name="txtMaxage" id="txtMaxage">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label>Last date of Registration</label>
+                            <input type="date" name="txtRegister" id="txtRegister">
+                        </div>
+                        <div class="form-row">
+                            <label>Participation Fees</label>
+                            <input type="number" id="txtFees" name="txtFees">
+                        </div>
+                        <div class="form-row">
+                            <label>Price Money</label>
+                            <input type="number" id="txtMoney" name="txtMoney">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <label>Contact Number</label>
+                        <input type="text" placeholder=" Enter Number" id="txtContact" name="txtContact">
+                    </div>
+
+                    <center>
+                        <div id="btn">
+                            <input type="button" class="btn btn-danger" id="publish" name="publish"
+                                value="Publish Event">
+
+                        </div>
+                    </center>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    </div>
+</body>
+
+</html>

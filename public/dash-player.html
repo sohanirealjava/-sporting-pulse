@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> </title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <!-- CDN FOR ANGULAR -->
+
+    <style>
+        #color {
+            width: 1300px;
+            height: 50px;
+            background-color: red;
+            text-align: center;
+        
+
+        }
+    </style>
+    <script>
+        function showUser() {
+            let activeUser = localStorage.getItem("activeUser");
+            document.getElementById("welcome").innerHTML = activeUser;
+        }
+
+        function doLogout() {
+            alert("");
+            localStorage.removeItem("activeUser");
+            location.href = "index.html";
+        }
+    </script>
+
+    <script>
+        var mymodule = angular.module("kuchModule", []);
+
+        mymodule.controller("kuchController", function ($scope, $http) {
+            $scope.jsonArray = [];
+            $scope.email;
+            $scope.old;
+            $scope.new;
+
+
+            $scope.dochangePwd = function () {
+
+                var url = "/do-update-all-users?kuchEmailid=" + $scope.email + "&kuchPassword1=" + $scope.old + "&kuchPassword2=" + $scope.new;
+
+
+                $http.get(url).then(allGoodFx, someBadFx);
+                function allGoodFx(response) {
+                    //resp in JSON array
+                    alert(JSON.stringify(response.data));
+                    $scope.jsonArray = response.data;
+
+                }
+
+                function someBadFx(response) {
+                    alert(JSON.stringify(response.data));
+                }
+            };
+        })
+    </script>
+</head>
+
+<body ng-app="kuchModule" ng-controller="kuchController" onload="showUser();">
+
+
+    
+        <div id="color" >
+            <font size="5" style="color: rgb(250, 250, 250) ; margin-left: 10px;"><i>Welcome : <span id="welcome">*</span></i>
+            </font>
+        </div>
+    
+    <center>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card" style="width: 12rem; margin-top: 125px;">
+                        <img src="pics/profile logo colourful.png" class="card-img-top " height="210px" alt="..."
+                            border="2px">
+                        <div class="card-body bg-danger">
+                            <center>
+                                <a href="/profile-player.html" class="btn btn-light">
+                                    <h6>Profile</h6>
+                                </a>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card " style="width: 12rem ; margin-top: 125px;">
+                        <img src="pics/exploreevent.jpg" class="card-img-top " height="210px" alt="..." border="2px">
+                        <div class="card-body bg-danger ">
+                            <center>
+                                <a href="/tournamentFinder.html" class="btn btn-light">
+                                    <h6>Explore Events</h6>
+                                </a>
+                            </center>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card " style="width: 14rem; margin-top: 125px; ">
+                        <img src="pics/setting logo-colourful.png" class="card-img-top " height="210px" alt="..."
+                            border="2px">
+                        <div class="card-body bg-danger ">
+                            <center>
+                                <a href="#" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#settingModal">
+                                    <h6>Settings</h6>
+                                </a>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card " style="width: 14rem; margin-top: 125px;">
+                        <img src="pics/logout-colourful.avif" class="card-img-top " height="210px" alt="..."
+                            border="2px">
+                        <div class="card-body bg-danger">
+                            <center>
+                                <a href="#" class="btn btn-light" onclick="doLogout();">
+                                    <h6>Log-out</h6>
+                                </a>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </center>
+
+
+    <!--=================== MODAL SETTINGS ==========================-->
+    <div class="modal" tabindex="-1" id="settingModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Settings</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <p>
+                    <form>
+                        <div class="mb-3 ">
+                            <label for="exampleInputEmail1" class="form-label bg-white">Email-id </label>
+                            <input type="email" class="form-control" id="txtEmail" name="txtEmail" ng-model="email"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label bg-white">Old Password</label>
+                            <input type="password" class="form-control" id="txtPwd1" name="txtPwd1" ng-model="old">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label bg-white"> New Password</label>
+                            <input type="password" class="form-control" id="txtPwd2" name="txtPwd2" ng-model="new">
+                        </div>
+
+                    </form>
+
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="dochangePwd();">Update Password</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</body>
+
+</html>

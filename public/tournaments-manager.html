@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>tournament manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <!-- CDN FOR ANGULAR -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+    <style>
+        #outer-div {
+            width: 1250px;
+
+            background-color: rgb(239, 227, 227);
+            margin: auto;
+            margin-top: 30px;
+            border-style: groove;
+            border-radius: 20px;
+        }
+    </style>
+
+    <script>
+
+        var mymodule = angular.module("kuchModule", []);
+        mymodule.controller("kuchController", function ($scope, $http) {
+            $scope.jsonArray = [];
+            //   $scope.txtEmail4="";
+            $scope.doFetchAll = function () {
+                var url = "/do-fetch-all-users?email=" + localStorage.getItem("activeUser")
+                $http.get(url).then(allgoodfx, somebadfx);
+                function allgoodfx(response) {
+                    console.log(response.data);
+                    alert(JSON.stringify(response.data));
+                    $scope.jsonArray = response.data;
+                }
+                function somebadfx(response) {
+                    console.log(response.data);
+                    alert(JSON.stringify(response.data));
+                }
+            }
+
+
+            //=========================================================================
+
+            $scope.doDelete = function (rid) {
+                var url = "/delete-one? ridKuch=" + rid;
+                $http.get(url).then(allgoodfx, somebadfx);
+                function allgoodfx(response) {
+                    alert(response.data);// RESPONSE IN STRING
+                    $scope.doFetchAll();
+                }
+                function somebadfx(response) {
+                    alert(JSON.stringify(response.data));
+
+                }
+            }
+        })
+
+    </script>
+</head>
+
+<body ng-app="kuchModule" ng-controller="kuchController" ng-init="doFetchAll();">
+    <div class="container">
+        <center>
+            <br><br>
+            <tr>
+                <diV class="row">
+                    <div class="col-md-6 ">
+                        <font size="5"> <b>Email-id :</b></font>
+                        <input type="email" placeholder="Enter your email"
+                            style="width: 400px; height: 50px; margin-left: 20px;" ng-model="txtEmail4" value=""
+                            name="txtEmail4">
+                    </div><br>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-danger" ng-click="doFetchAll()">Fetch All</button>
+                    </div>
+                </diV>
+            </tr>
+
+        </center>
+        <br><br><br>
+        <center>
+            <font size="5"><b>Posted Tournaments</b></font>
+        </center>
+        <br>
+     <div class="row">
+        <table class="table table-dark  " border="1">
+            <thead>
+                <tr>
+                    <th scope="col">Sr.No</th>
+                    <th scope="col">Event</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Sports</th>
+                    <th scope="col">Minage</th>
+                    <th scope="col">Maxage</th>
+                    <th scope="col">Fees</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Contact</th>
+                    <th scope="col">Action</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="obj in jsonArray">
+                    <td>{{$index+1}}</td>
+                    <td>{{obj.eventtitle}}</td>
+                    <td>{{obj.doe}}</td>
+                    <td>{{obj.toe}}</td>
+                    <td>{{obj.address}}</td>
+                    <td>{{obj.city}}</td>
+                    <td>{{obj.sports}}</td>
+                    <td>{{obj.minage}}</td>
+                    <td>{{obj.maxage}}</td>
+                    <td>{{obj.fees}}</td>
+                    <td>{{obj.prize}}</td>
+                    <td>{{obj.contact}}</td>
+
+                    <th>
+                        <input type="button" value="Remove" ng-click="doDelete(obj.rid);">
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+ </div>
+    </div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+
+<body ng-app="kuchModule" ng-controller="kuchController" ng-init="doFetchAll();">
+    <div id="outer-div">
+        <center>
+            <br><br>
+            <tr>
+
+                <font size="5"> <b>Email-id :</b></font>
+                <input type="email" placeholder="Enter your email"
+                    style="width: 300px; height: 40px; margin-left: 20pxpx;" ng-model="txtEmail4" value="" name="txtEmail4">
+                <button type="button" class="btn btn-danger" ng-click="doFetchAll()">Fetch All</button>
+            </tr>
+        </center>
+        <br><br><br>
+        <center>
+            <font size="5"><b>Posted Tournaments</b></font>
+        </center>
+        <br>
+        
+        <table class="table table-dark w-100 " border="1" >
+            <thead>
+                <tr>
+                    <th scope="col">Sr.No</th>
+                    <th scope="col">Event</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Sports</th>
+                    <th scope="col">Minage</th>
+                    <th scope="col">Maxage</th>
+                    <th scope="col">Fees</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Contact</th>
+                    <th scope="col">Action</th>
+                    
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="obj in jsonArray">
+                <td>{{$index+1}}</td>
+                <td>{{obj.eventtitle}}</td>
+                <td>{{obj.doe}}</td>
+                <td>{{obj.toe}}</td>
+                <td>{{obj.address}}</td>
+                <td>{{obj.city}}</td>
+                <td>{{obj.sports}}</td>
+                <td>{{obj.minage}}</td>
+                <td>{{obj.maxage}}</td>
+                <td>{{obj.fees}}</td>
+                <td>{{obj.prize}}</td>
+                <td>{{obj.contact}}</td>
+
+                <th>
+                    <input type="button" value="Remove" ng-click="doDelete(obj.rid);">
+                </th>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+
+</html>
+
+
+-->

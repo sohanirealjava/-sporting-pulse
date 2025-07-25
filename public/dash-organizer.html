@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> </title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+
+    <style>
+        #color {
+            width: 1300px;
+            height: 50px;
+            background-color: red;
+
+        }
+
+        /* body {
+            background-image:url(pics/football.webp);  Replace with your image path 
+            background-size: contain;  Or 'contain', 'auto', '100% 100%' 
+            background-repeat: repeat-x;
+            background-position: center center; /* Or 'top left', 'bottom right', etc. 
+            background-attachment: fixed;  Or 'scroll' - makes background scroll or stay fixed 
+            color: #333; Example text color for contrast 
+        }*/
+    </style>
+    <script>
+        function showUser() {
+            let activeUser = localStorage.getItem("activeUser");
+            document.getElementById("welcome").innerHTML = activeUser;
+        }
+
+        function doLogout() {
+            // alert("");
+            localStorage.removeItem("activeUser");
+            location.href = "index.html";
+        }
+    </script>
+</head>
+
+<body onload="showUser();">
+    <center>
+        <div id="color">
+            <font size="5" style="color: aliceblue ; margin-left: 10px;"><i>Welcome : <span id="welcome">* </span>
+                </i> </font>
+        </div>
+    </center>
+<center>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-3">
+
+                <div class="card"
+                    style="width: 12rem; margin-top: 125px; ">
+                    <img src="pics/org detalis pic.jpg" class="card-img-top " height="180px" alt="..." border="2px">
+                    <div class="card-body bg-danger ">
+                        <center>
+                            <a href="/org-details.html" class="btn btn-light">
+                                <h6>Org.Details</h6>
+                            </a>
+                        </center>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card "
+                    style="width: 12rem ; margin-top: 125px;">
+                    <img src="pics/sports.jpg" class="card-img-top " height="180px" alt="..." border="2px">
+                    <div class="card-body bg-danger ">
+                        <center>
+                            <a href="/post-tournament.html" class="btn btn-light">
+                                <h6>Post event</h6>
+                            </a>
+                        </center>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card "
+                    style="width: 14rem; margin-top: 125px; ">
+                    <img src="pics/manage-tournament.jpg" height="180px" class="card-img-top " alt="..." border="2px">
+                    <div class="card-body bg-danger ">
+                        <center>
+                            <a href="/tournaments-manager.html" class="btn btn-light">
+                                <h6>Manage Tournaments</h6>
+                            </a>
+                        </center>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card "
+                    style="width: 14rem; margin-top: 125px;">
+                    <img src="pics/logout-colourful.avif" class="card-img-top " height="180px" alt="..." border="2px">
+                    <div class="card-body bg-danger">
+                        <center>
+                            <a href="#" class="btn btn-light" onclick="doLogout();">
+                                <h6>Log-out</h6>
+                            </a>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</center>
+
+</body>
+
+</html>

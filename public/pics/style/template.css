@@ -1,0 +1,108 @@
+/* Universal Selector */
+*{
+    margin: 0px;
+}
+body{
+    background-color: darkgray;
+}
+#outer-div
+{
+    width: 1100px; height: 750px;
+    background-color: #fff;
+    margin: auto; /*center the div*/
+    
+}
+#title-div{
+    width: inherit;
+    background-color: orange;
+    line-height: 50px;
+    
+}
+.txt{
+    color: white;
+    font-size: 30px;
+    font-style: italic;
+    text-shadow: 5px 5px 3px gray;
+    margin-left: 20px;
+    
+}
+#logo
+{
+    border: 1px black solid;
+    width: 40px; height: 40px;
+    float: left;
+    margin-top: 5px;
+    background-image: url(../pics/logo.jpg);
+    background-size: contain;
+    margin-left: 20px;
+    border-radius: 50%;
+    transition: ease all 1s;
+}
+#logo:hover{
+    transform: scale(1.2);
+     transition: ease all 1s;
+}
+.smicons{
+    /* border: 1px black solid; */
+    width: 40px; height: 40px;
+    float: right;
+    margin-top: 5px;
+    background-image: url(../pics/fb.png);
+    background-color: #fff;
+    background-size: contain;
+    margin-right: 20px;
+    border-radius: 50%;
+     transition: ease all 1s;
+}
+.spl-logo
+{
+    background-image: url(../pics/email.jpg);
+}
+
+.smicons:hover{
+    transform: rotate(360deg);
+    transition: ease all 1s;
+}
+
+#menu-div{
+    width: inherit;
+    background-color: aliceblue;
+    line-height: 50px;
+    float: left;
+    
+    
+}
+
+#menu-div ol{
+    list-style: none;
+    margin-left: -40px;
+    
+    
+}
+#menu-div li{
+    float: left;
+    padding: 5px 10px 5px 10px;
+    background-color: black;
+    color: white;
+    margin-right: 3px;
+    line-height: 30px;
+}
+#menu-div li:hover{
+    background-color: orange;
+}
+
+#title-pic-div
+{
+    width: inherit;
+    height: 200px;
+    background-color: antiquewhite;
+    background-image: url(../pics/ac.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    float: left;
+    /* background-size: 110%; */
+    background-size: cover;
+}
+#title-pic-div:hover{
+    opacity:.6;
+}

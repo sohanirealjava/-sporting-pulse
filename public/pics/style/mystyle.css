@@ -1,0 +1,35 @@
+ /* Class Selector */
+       
+        .btn{
+                width: 100px; padding: 10px; text-align: center;
+                font-weight: bolder; color: black;
+                background-color: orange;
+                float: left;
+                margin-left: 10px;
+                cursor: pointer;
+                border: 3px black double;;
+                /* dotted   dashed  solid */
+                 transition: ease all .5s;
+                 border-radius: 20px; 
+                 /* 20px from all sides */
+                 text-shadow: 5px 0px 5px red;
+        }
+               
+        .btn:hover
+        {
+            background: black;
+            color: orange;
+            border: 3px white double;;
+
+            /* border-radius: 0px 20px 0px 20px;  */
+            /* topLeft,topRight,bottomRight,bottomLeft */
+             box-shadow: -5px 5px 10px gray ;
+
+            /* press ctrl+forwardSlash */
+        }
+        .btn:active{
+            /* transform: translate(5px,5px); */
+            transform: translate(5px,5px);
+            transition: ease all .5s;
+            text-transform: uppercase;
+        }

@@ -1,0 +1,42 @@
+#side-menu{
+    width: 250px;
+    height: 600px;
+    border: 1px black solid;
+    float: left;
+    background-color: antiquewhite;
+    overflow-y: scroll;
+}
+
+/* Type Selector */
+#side-menu ol{
+    list-style: none;;
+    background-color: #fff;
+    padding-left: 0px;
+    margin-top: 0px;
+}
+#side-menu li{
+    /* margin-left: -30px; */
+    text-align: center;
+    line-height: 40px;
+    background-color: orange;
+    color: #fff;
+    /* border-bottom: 3px black dotted; */
+    margin-bottom: 3px;
+    font-family: 'Franklin Gothic Medium';
+    font-size: 16px;
+    cursor: pointer;
+    
+   
+}
+#side-menu li:hover
+{
+    background-color: white;
+    color: orange;
+}
+a{
+    text-decoration: none;
+}
+
+#screen{
+    width: 1000px; height: 600px; float: left; background-color: antiquewhite;
+}

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Organizer Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    </body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            padding: 20px;
+        }
+
+        .form-container {
+            background: rgb(239, 227, 227);
+            padding: 30px;
+            max-width: 800px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #b30059;
+        }
+
+        .form-group {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 3px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-row {
+            margin-bottom: 15px;
+            width: 50%;
+        }
+
+        .search-button {
+            background-color: #cc0066;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #btn {
+            width: 300px;
+            margin-top: 30px;
+        }
+
+        #pic {
+            margin-left: 650px;
+
+        }
+
+        #otherInfo {
+            width: 100px;
+            height: 40px;
+        }
+
+
+        #otherInfo {
+            width: 100%;
+        }
+    </style>
+
+
+    <script>
+        function showPrev(profilePic, prev) {
+            const [file] = profilePic.files
+            if (file) {
+                prev.src = URL.createObjectURL(file)
+            }
+        }
+    </script>
+
+    <script>
+        function showUser() {
+            let activeUser = localStorage.getItem("activeUser");
+            document.getElementById("txtmail").value = activeUser;
+        }
+    </script>
+
+</head>
+
+<body onload="showUser();">
+    <div class="container">
+        <div class="row">
+            <form action="/org-signup" method="post" enctype="multipart/form-data">
+                <input type="hidden" id="hdn" name="hdn">
+                <div class="form-container">
+                    <h2>
+                        Organizer Details Form
+                    </h2>
+
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label>Email ID</label>
+                            <input type="email" placeholder="abc@gmail.com" name="txtmail" id="txtmail">
+
+                        </div>
+                        <div id="btn">
+                            <input type="button" class="btn btn-danger" value="Search" id="search" name="search">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label>Organization Name</label>
+                            <input type="text" id="orgName" name="orgName">
+                        </div>
+                        <div class="form-row">
+                            <label>Registration Number</label>
+                            <input type="text" id="regNo" name="regNo">
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label>Address</label>
+                            <input type="text" id="add" name="add">
+                        </div>
+                        <div class="form-row">
+                            <label>City</label>
+                            <input type="text" name="city" id="city">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <label>Deals in Sports</label>
+                        <input type="text " placeholder="eg : Tennis, Cricket" id="sport" name="sport">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label>Website</label>
+                            <input type="url" placeholder="https://example.com" name="web" id="web">
+                        </div>
+                        <div class="form-row">
+                            <label>Instagram Link</label>
+                            <input type="url" placeholder="https://instagram.com/orgname" name="instaLink"
+                                id="instaLink">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label>Organization Head</label>
+                            <input type="text" placeholder="Enter head name" name="orgHead" id="orgHead">
+                        </div>
+                        <div class="form-row">
+                            <label>Contact Number</label>
+                            <input type="text" placeholder="Enter contact number" id="contact" name="contact">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-row">
+
+                            <label>Registration Certificate Pic</label>
+                            <input type="file" name="profilePic" id="profilePic" onchange="showPrev(profilePic,prev)">
+                        </div>
+                        <div   class="form-row" >
+                            <label> Preview</label>
+                            <img src="pics/shinchan.webp" width="100" id="prev" name="prev" alt="">
+                        </div>
+
+                    </div>
+
+
+                    <label>Other Information</label>
+
+                    <input type="text" id="otherInfo" , name="otherInfo" , style=" height: 60px;">
+                    <center>
+                        <div id="btn">
+                            <input type="submit" class="btn btn-danger" id="send" name="send" value="send to server">
+                            <input type="submit" class="btn btn-danger" id="modify" name="modify" value="Modify"
+                                formaction="/update-org">
+                        </div>
+                    </center>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+<!--
+<div class="row">
+    <div class="col-md-6">
+        <label>Registration Certificate Pic</label>
+
+        <input type="file" name="profilePic" id="profilePic" onchange="showPrev(profilePic,prev)">
+        </div>
+
+        <div  class="col-md-6" id="pic">
+            <label> Preview</label>
+            <img src="pics/shinchan.webp" width="100" id="prev" name="prev" alt="">
+        </div>
+
+    
+</div>
+
+div class="form-row">
+
+                        <label>Registration Certificate Pic</label>
+                        <input type="file" name="profilePic" id="profilePic" onchange="showPrev(profilePic,prev)">
+
+                        <div id="pic">
+                            <label> Preview</label>
+                            <img src="pics/shinchan.webp" width="100" id="prev" name="prev" alt="">
+                        </div>
+
+
+                    </div>
