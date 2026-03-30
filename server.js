@@ -28,6 +28,10 @@ app.get("/hello", function (_req, resp) {
   resp.write("hellooo!!!");
   resp.end();
 })
+app.get("/hi", function (_req, resp) {
+  resp.write("hi welcome to the site hope you are doing well!");
+  resp.end();
+})
 //----------
 app.use(express.static("public"));
 
